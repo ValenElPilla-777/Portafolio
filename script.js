@@ -59,32 +59,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-    // Reloj en tiempo real
+      // Reloj en tiempo real con formato digital
     function updateClock() {
         const now = new Date();
         
-        // Formatear hora
+        // Formatear hora con formato 24h
         const hours = now.getHours().toString().padStart(2, '0');
         const minutes = now.getMinutes().toString().padStart(2, '0');
         const seconds = now.getSeconds().toString().padStart(2, '0');
         const timeString = `${hours}:${minutes}:${seconds}`;
         
-        // Formatear fecha
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const dateString = now.toLocaleDateString('es-ES', options);
+        // Formatear fecha en español
+        const days = ['DOMINGO', 'LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO'];
+        const months = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
+        
+        const dayName = days[now.getDay()];
+        const day = now.getDate();
+        const monthName = months[now.getMonth()];
+        const year = now.getFullYear();
+        
+        const dateString = `${dayName} ${day} ${monthName} ${year}`;
         
         // Actualizar el DOM
-        const clockTime = document.querySelector('.clock-time');
-        const clockDate = document.querySelector('.clock-date');
+        const clockTime = document.getElementById('clock-time');
+        const clockDate = document.getElementById('clock-date');
         
         if (clockTime && clockDate) {
-            clockTime.textContent = timeString;
+            // Añadir efecto de actualización digital
+            clockTime.style.opacity = '0.7';
+            setTimeout(() => {
+                clockTime.textContent = timeString;
+                clockTime.style.opacity = '1';
+            }, 50);
+            
             clockDate.textContent = dateString;
         }
     }
     
     // Iniciar y actualizar cada segundo
-    if (document.querySelector('.cyber-clock')) {
+    if (document.getElementById('cyber-clock')) {
         updateClock();
         setInterval(updateClock, 1000);
     }
