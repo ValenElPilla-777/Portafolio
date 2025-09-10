@@ -1283,3 +1283,33 @@ footer {
     }
 }
 
+/* Estilos para el enlace de GitHub */
+.social-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #00ff41;
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid #00ff41;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.github-link:hover {
+    background-color: #00ff41;
+    color: #000;
+    text-shadow: none;
+    box-shadow: 0 0 10px #00ff41;
+}
+
+.github-link i {
+    font-size: 1.2rem;
+}
