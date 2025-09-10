@@ -1306,3 +1306,37 @@ footer {
 .github-link i {
     font-size: 1.2rem;
 }
+
+/* ---- ESTILOS PARA EL RELOJ CYBERPUNK ---- */
+.cyber-clock {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #00ff41;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    animation: neonPulse 2s infinite alternate;
+}
+
+@keyframes neonPulse {
+    from {
+        box-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(0, 255, 65, 0.8), 0 0 25px rgba(0, 255, 65, 0.6);
+    }
+}
+
+.clock-time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00ff41;
+    text-shadow: 0 0 5px #00ff41;
+    margin-bottom: 5px;
+}
+
+.clock-date {
+    font-size: 0.8rem;
+    color: #00ffff;
+}
