@@ -1284,30 +1284,23 @@ footer {
 }
 
 /* Estilos para el enlace de GitHub */
-.social-links {
-    margin-top: 20px;
-    text-align: center;
-}
-
 .github-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
     color: #00ff41;
     text-decoration: none;
-    padding: 8px 15px;
-    border: 1px solid #00ff41;
-    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     transition: all 0.3s;
-    font-size: 0.9rem;
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
 
 .github-link:hover {
-    background-color: #00ff41;
-    color: #000;
-    text-shadow: none;
-    box-shadow: 0 0 10px #00ff41;
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+    border-color: #ff00ff;
+    background-color: rgba(255, 0, 255, 0.1);
 }
 
 .github-link i {
