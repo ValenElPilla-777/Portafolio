@@ -1,4 +1,3 @@
-// --- script.js completo ---
 
 document.addEventListener('DOMContentLoaded', function() {
     // Navegación entre secciones
@@ -59,3 +58,33 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 });
+
+    // Reloj en tiempo real
+    function updateClock() {
+        const now = new Date();
+        
+        // Formatear hora
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        const timeString = `${hours}:${minutes}:${seconds}`;
+        
+        // Formatear fecha
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const dateString = now.toLocaleDateString('es-ES', options);
+        
+        // Actualizar el DOM
+        const clockTime = document.querySelector('.clock-time');
+        const clockDate = document.querySelector('.clock-date');
+        
+        if (clockTime && clockDate) {
+            clockTime.textContent = timeString;
+            clockDate.textContent = dateString;
+        }
+    }
+    
+    // Iniciar y actualizar cada segundo
+    if (document.querySelector('.cyber-clock')) {
+        updateClock();
+        setInterval(updateClock, 1000);
+    }
