@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentino Masetto Brachi - Portafolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tictactoe.css">
+    <link rel="stylesheet" href="music.css">
+    <link rel="icon" type="image/x-icon" href="assets/ico.png">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+    
+    <div class="draggable-element" id="draggable1">
+        <img src="assets/gifs/disk.gif" alt="Tech GIF 1">
+    </div>
+    <div class="draggable-element" id="draggable2">
+        <img src="assets/gifs/clippy.gif" alt="Tech GIF 2">
+    </div>
+    <div class="draggable-element" id="draggable3">
+        <img src="assets/gifs/ghost.gif" alt="Tech GIF 3">
+    </div>
+    <div class="draggable-element" id="draggable4">
+        <img src="assets/gifs/mc.gif" alt="Tech Icon 1">
+    </div>
+    <div class="draggable-element" id="draggable5">
+        <img src="assets/gifs/kirby.gif" alt="Tech Icon 2">
+    </div>
+    
+    <button id="paint-toggle" class="paint-button">ACTIVAR MODO PINTURA</button>
+    <button id="clear-canvas" class="paint-button" style="display:none;">LIMPIAR LIENZO</button>
+    
+    <aside class="sidebar">
+        <div class="profile">
+            <div class="profile-image">
+                <img src="assets/images/Me" id="profile-pic">
+            </div>
+            <h2>Valentino Masetto Brachi</h2>
+            <div class="profile-info">
+                <p><span class="info-label">Fecha de nacimiento:</span> 17/10/2008</p>
+                <p><span class="info-label">Estudios:</span>Primarios y Secundarios</p>
+                <p><span class="info-label">Especialidad:</span> Programación, Edición de Video</p>
+                <p><span class="info-label">Ubicación:</span> Buenos Aires, Argentina</p>
+            </div>
+        </div>
+
+<div class="music-player">
+        <h3>MÚSICA FAVORITA</h3>
+        <div class="track-info">
+            <p class="track-name">Cargando...</p>
+            <p class="artist">Esperando datos</p>
+        </div>
+        <div class="player-controls">
+            <button id="prev-btn" class="control-btn">⏮</button>
+            <button id="play-btn" class="control-btn">▶</button>
+            <button id="next-btn" class="control-btn">⏭</button>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="time-display">
+                <span class="current-time">0:00</span>
+                <span class="duration">0:00</span>
+            </div>
+        </div>
+        <div class="visualizer-container">
+            <canvas id="visualizer" width="250" height="60"></canvas>
+        </div>
+        <div class="volume-control">
+            <span class="volume-icon">🔊</span>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.7">
+        </div>
+        <div class="playlist">
+            <div class="playlist-item active">Knockin' On Heaven's Door - Guns N' Roses</div>
+            <div class="playlist-item">Boulevard of Broken Dreams - Green Day</div>
+            <div class="playlist-item">Psychosocial - Slipknot</div>
+        </div>
+    </div>
+    </aside>
+
+    <div class="main-content">
+        <header>
+            <div class="gif-container left-gif">
+                <img src="assets/gifs/skull.gif" alt="GIF izquierdo">
+            </div>
+            <h1 class="glitch" data-text="VALENTINO MASETTO BRACHI">VALENTINO MASETTO BRACHI</h1>
+            <div class="gif-container right-gif">
+                <img src="assets/gifs/skull.gif" alt="GIF derecho">
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="nav-link">INICIO</a></li>
+                <li><a href="#habilidades" class="nav-link">HABILIDADES</a></li>
+                <li><a href="#proyectos" class="nav-link">PROYECTOS</a></li>
+                <li><a href="#contacto" class="nav-link">CONTACTO</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="inicio" class="section active">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-button red"></span>
+                        <span class="terminal-button yellow"></span>
+                        <span class="terminal-button green"></span>
+                        <span class="terminal-title">usuario@portfolio:~</span>
+                    </div>
+                    <div class="terminal-content">
+                        <p>> Bienvenido a mi portfolio.exe</p>
+                        <p>> Cargando datos del sistema...</p>
+                        <p>> <span class="typed-text"></span><span class="cursor">|</span></p>
+                        <p>> Presiona cualquier tecla para continuar</p>
+                    </div>
+                </div>
+
+                <div class="game-section">
+        <div class="tic-tac-toe-container">
+            <h2>> TIC_TAC_TOE.EXE</h2>
+            <div class="game-info">
+                <div class="current-player">Turno: <span id="player-turn">X (Tú)</span></div>
+                <div class="game-status" id="game-status"></div>
+            </div>
+            <div class="tic-tac-toe-board" id="tic-tac-toe-board">
+                <div class="cell" data-cell-index="0"></div>
+                <div class="cell" data-cell-index="1"></div>
+                <div class="cell" data-cell-index="2"></div>
+                <div class="cell" data-cell-index="3"></div>
+                <div class="cell" data-cell-index="4"></div>
+                <div class="cell" data-cell-index="5"></div>
+                <div class="cell" data-cell-index="6"></div>
+                <div class="cell" data-cell-index="7"></div>
+                <div class="cell" data-cell-index="8"></div>
+            </div>
+            <button id="reset-game" class="cyber-button">REINICIAR JUEGO</button>
+        </div>
+        
+        <div class="game-gif">
+            <img src="assets/gifs/palmeras.gif" alt="Juego GIF" onerror="this.src='https://media.giphy.com/media/l0HlNaQ6gWfllcjDO/giphy.gif'">
+        </div>
+    </div>
+            </section>
+
+            
+
+            <section id="habilidades" class="section">
+                <h2>> HABILIDADES.TXT</h2>
+                <div class="skills-grid">
+                    <div class="skill">
+                        <h3>PROGRAMACIÓN</h3>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-skill="90"></div>
+                        </div>
+                        <p>HTML, CSS, C, Arduino IDE, mySQL</p>
+                    </div>
+                    <div class="skill">
+                        <h3>EDICIÓN DE VIDEO/IMAGEN</h3>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-skill="85"></div>
+                        </div>
+                        <p> Premiere, Filmora studios, Photoshop</p>
+                    </div>
+                    <div class="skill">
+                        <h3>OTROS</h3>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-skill="85"></div>
+                        </div>
+                        <p> Armado de Computadoras y diagnostico</p>
+                    </div>
+                    <div class="skill">
+                        <h3>EN PROGRESO</h3>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-skill="60"></div>
+                        </div>
+                        <p>Python, Adobe After Effects, JavaScript</p>
+                    </div>
+                </div>
+            </section>
+
+ <section id="proyectos" class="section">
+                <h2>> PROYECTOS.EXE</h2>
+
+                <div class="projects-categories">
+                    <button class="category-btn active" data-category="programacion">PROGRAMACIÓN</button>
+                    <button class="category-btn" data-category="diseno">DISEÑO</button>
+                </div>
+
+                <div class="project-details-overlay" id="project-details-overlay">
+                    <button class="close-details-btn cyber-button">VOLVER</button>
+                    <div class="overlay-inner" id="overlay-inner">
+                        </div>
+                </div>
+
+                <div class="projects-main">
+                    <div class="projects-section active" id="programacion-projects">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon"><img src="assets/images/C.png" alt=""></div>
+                                <h3>LENGUAJE C</h3>
+                                <button class="view-more-btn cyber-button" data-id="c-projects">VER MÁS +</button>
+                            </div>
+                            <p>Proyectos desarrollados en C con enfoque en sistemas y aplicaciones de consola.</p>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon"><img src="assets/images/mysql.png" alt=""></div>
+                                <h3>MySQL</h3>
+                                <button class="view-more-btn cyber-button" data-id="mysql-projects">VER MÁS +</button>
+                            </div>
+                            <p>Bases de datos y sistemas de gestión de información.</p>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon"><img src="assets/images/html.png" alt=""></div>
+                                <h3>PÁGINAS WEB</h3>
+                                <button class="view-more-btn cyber-button" data-id="web-projects">VER MÁS +</button>
+                            </div>
+                            <p>Diseño y desarrollo de sitios web responsivos y modernos.</p>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon"><img src="assets/images/arduino.png" alt=""></div>
+                                <h3>ARDUINO</h3>
+                                <button class="view-more-btn cyber-button" data-id="arduino-projects">VER MÁS +</button>
+                            </div>
+                            <p>Proyectos de electrónica y domótica con microcontroladores.</p>
+                        </div>
+                    </div> <div class="projects-section" id="diseno-projects">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon"><img src="assets/images/premiere.png" alt=""></div>
+                                <h3>ADOBE PREMIERE</h3>
+                                <button class="view-more-btn cyber-button" data-id="premiere-projects">VER MÁS +</button>
+                            </div>
+                            <p>Edición y postproducción de video profesional.</p>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon"><img src="assets/images/photoshop.png" alt=""></div>
+                                <h3>ADOBE PHOTOSHOP</h3>
+                                <button class="view-more-btn cyber-button" data-id="photoshop-projects">VER MÁS +</button>
+                            </div>
+                            <p>Edición de imágenes, fotomontajes y diseño gráfico digital.</p>
+                        </div>
+                    </div>
+                </div> 
+    </section>
+   
+
+            <section id="contacto" class="section">
+                <h2>> CONTACTO.DAT</h2>
+                <form class="cyber-form" id="contact-form">
+                    <input type="text" placeholder="NOMBRE" required>
+                    <input type="email" placeholder="EMAIL" required>
+                    <textarea placeholder="MENSAJE" required></textarea>
+                    <button type="submit" class="cyber-button">ENVIAR</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <audio id="audio-player" style="display: none;"></audio>
+
+    <canvas id="paint-canvas" style="display:none; position:fixed; top:0; left:0; z-index:9999; cursor:crosshair;"></canvas>
+
+    <script src="script.js"></script>
+    <script src="draggable.js"></script>
+    <script src="paint.js"></script>
+    <script src="tictactoe.js"></script>
+    <script src="face-effect.js"></script>
+    <script src="music.js"></script>
+    <script src="projects.js"></script>
+</body>
+</html>

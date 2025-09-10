@@ -1,0 +1,105 @@
+/* Juego Tic Tac Toe */
+.game-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 30px;
+}
+
+.tic-tac-toe-container {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border: 1px solid #00ff41;
+    border-radius: 5px;
+    min-width: 300px;
+}
+
+.game-gif {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.game-gif img {
+    max-width: 100%;
+    max-height: 300px;
+    border: 1px solid #00ff41;
+    border-radius: 5px;
+}
+
+.tic-tac-toe-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    margin: 20px 0;
+    background-color: #00ff41;
+    border: 2px solid #00ff41;
+    border-radius: 5px;
+    overflow: hidden;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cell {
+    aspect-ratio: 1;
+    background-color: #0a0a12;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.cell:hover {
+    background-color: rgba(0, 255, 65, 0.1);
+}
+
+.cell.x {
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+.cell.o {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+.cell.win {
+    animation: win-pulse 1s infinite;
+}
+
+@keyframes win-pulse {
+    0%, 100% { background-color: rgba(0, 255, 65, 0.1); }
+    50% { background-color: rgba(0, 255, 65, 0.3); }
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid #00ff41;
+    border-radius: 3px;
+}
+
+.current-player, .game-status {
+    font-size: 1rem;
+    color: #00ff41;
+}
+
+#player-turn {
+    color: #ff00ff;
+    font-weight: bold;
+}
+
+#game-status {
+    color: #00ffff;
+    font-weight: bold;
+}

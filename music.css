@@ -1,0 +1,150 @@
+/* Reproductor de música */
+.music-player {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #00ff41;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: auto;
+}
+
+.music-player h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #ff00ff;
+}
+
+.track-info {
+    text-align: center;
+    margin-bottom: 15px;
+    min-height: 50px;
+}
+
+.track-name {
+    font-weight: bold;
+    color: #00ffff;
+}
+
+.artist {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.control-btn {
+    background-color: #000;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.control-btn:hover {
+    background-color: #00ff41;
+    color: #000;
+}
+
+.playlist {
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.playlist::-webkit-scrollbar {
+    display: none;
+}
+
+.visualizer-container {
+    width: 100%;
+    height: 60px;
+    margin: 15px 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid #00ff41;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#visualizer {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.progress-container {
+    margin: 15px 0;
+    position: relative;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: #222;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff41, #ff00ff);
+    width: 0%;
+    transition: width 0.1s;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: #ccc;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.volume-icon {
+    margin-right: 10px;
+    color: #00ff41;
+}
+
+#volume-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 5px;
+    background: #222;
+    border-radius: 5px;
+    outline: none;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #00ff41;
+    cursor: pointer;
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #00ff41;
+    cursor: pointer;
+    border: none;
+}
