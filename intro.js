@@ -1,148 +1,110 @@
-// intro-oldschool.js – Pantalla de carga retro 2000s
-document.addEventListener('DOMContentLoaded', function() {
-  const introOverlay = document.createElement('div');
-  introOverlay.id = 'oldschool-intro';
-  introOverlay.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    color: #00ff00;
-    font-family: "Courier New", monospace;
+// === ESTILOS ===
+const style = document.createElement('style');
+style.textContent = `
+  body {
+    margin: 0;
+    background: #245EDC;
+    font-family: "Tahoma", sans-serif;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-  `;
-
-  const container = document.createElement('div');
-  container.style.cssText = `
-    width: 600px;
-    max-width: 90%;
-    border: 2px solid #00ff00;
-    background-color: #000;
-    padding: 20px;
-    text-align: left;
-  `;
-  introOverlay.appendChild(container);
-
-  // Título tipo BIOS
-  const title = document.createElement('div');
-  title.textContent = '== SYSTEM BOOT ==';
-  title.style.cssText = `
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    text-align: center;
-  `;
-  container.appendChild(title);
-
-  // Barra de progreso estilo Windows viejo
-  const progressContainer = document.createElement('div');
-  progressContainer.style.cssText = `
-    width: 100%;
-    height: 20px;
-    background-color: #333;
-    border: 1px solid #00ff00;
-    margin: 10px 0;
-    overflow: hidden;
-  `;
-  container.appendChild(progressContainer);
-
-  const progressBar = document.createElement('div');
-  progressBar.style.cssText = `
-    height: 100%;
-    width: 0%;
-    background-image: repeating-linear-gradient(
-      45deg,
-      #00ff00,
-      #00ff00 10px,
-      #009900 10px,
-      #009900 20px
-    );
-    transition: width 0.4s linear;
-  `;
-  progressContainer.appendChild(progressBar);
-
-  // Texto de estado
-  const statusText = document.createElement('div');
-  statusText.textContent = 'Inicializando sistema...';
-  statusText.style.cssText = `
-    font-size: 1rem;
-    margin-top: 5px;
-  `;
-  container.appendChild(statusText);
-
-  // Consola tipo DOS
-  const consoleOutput = document.createElement('div');
-  consoleOutput.style.cssText = `
-    height: 150px;
-    overflow-y: auto;
-    font-size: 0.9rem;
-    margin-top: 10px;
-    background-color: #000;
-    padding: 5px;
-    border: 1px solid #00ff00;
-    white-space: pre;
-  `;
-  container.appendChild(consoleOutput);
-
-  document.body.appendChild(introOverlay);
-  document.body.style.overflow = 'hidden';
-
-  const bootMessages = [
-    "Cargando controladores...",
-    "Comprobando disco...",
-    "Iniciando servicios...",
-    "Configurando red...",
-    "Cargando interfaz...",
-    "Preparando entorno gráfico...",
-    "Sistema operativo listo."
-  ];
-
-  let currentProgress = 0;
-  let currentMessage = 0;
-
-  function updateBootProgress() {
-    if (currentProgress < 100) {
-      currentProgress += Math.random() * 8;
-      if (currentProgress > 100) currentProgress = 100;
-
-      progressBar.style.width = currentProgress + '%';
-
-      if (currentMessage < bootMessages.length &&
-        currentProgress >= (currentMessage + 1) * (100 / bootMessages.length)) {
-
-        const line = document.createElement('div');
-        line.textContent = "> " + bootMessages[currentMessage];
-        consoleOutput.appendChild(line);
-        consoleOutput.scrollTop = consoleOutput.scrollHeight;
-
-        currentMessage++;
-      }
-
-      statusText.textContent = `Cargando... ${Math.floor(currentProgress)}%`;
-
-      setTimeout(updateBootProgress, 150 + Math.random() * 200);
-    } else {
-      statusText.textContent = "Sistema listo. Presione cualquier tecla...";
-      setTimeout(() => {
-        introOverlay.style.opacity = '0';
-        introOverlay.style.transition = 'opacity 0.5s ease';
-        setTimeout(() => {
-          document.body.removeChild(introOverlay);
-          document.body.style.overflow = 'auto';
-          if (typeof initPageEffects === 'function') initPageEffects();
-        }, 500);
-      }, 1000);
-    }
   }
+  #login-screen {
+    background: #f0f0f0;
+    border: 2px solid #003399;
+    width: 350px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  }
+  #login-screen img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #003399;
+    margin-bottom: 10px;
+  }
+  #login-screen h1 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #003399;
+  }
+  #password {
+    width: 80%;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+  }
+  #login-button {
+    background: #245EDC;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  #login-button:hover {
+    background: #003399;
+  }
+  #welcome-screen {
+    display: none;
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    animation: fadeIn 1s ease forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+`;
+document.head.appendChild(style);
 
-  setTimeout(updateBootProgress, 500);
+// === LOGIN SCREEN ===
+const loginScreen = document.createElement('div');
+loginScreen.id = 'login-screen';
+
+const userImg = document.createElement('img');
+// puedes cambiar esta URL por la foto que quieras:
+userImg.src = 'https://i.imgur.com/NH6ktYv.png';
+userImg.alt = 'Usuario';
+
+const userTitle = document.createElement('h1');
+userTitle.textContent = 'Usuario';
+
+const passwordInput = document.createElement('input');
+passwordInput.type = 'password';
+passwordInput.id = 'password';
+passwordInput.placeholder = 'Contraseña';
+
+const loginButton = document.createElement('button');
+loginButton.id = 'login-button';
+loginButton.textContent = 'Iniciar sesión';
+
+// añadimos elementos al login
+loginScreen.appendChild(userImg);
+loginScreen.appendChild(userTitle);
+loginScreen.appendChild(passwordInput);
+loginScreen.appendChild(document.createElement('br'));
+loginScreen.appendChild(loginButton);
+
+// === WELCOME SCREEN ===
+const welcomeScreen = document.createElement('div');
+welcomeScreen.id = 'welcome-screen';
+const welcomeText = document.createElement('h1');
+welcomeText.textContent = 'Bienvenido a mi portafolio';
+welcomeScreen.appendChild(welcomeText);
+
+// Añadir al body
+document.body.appendChild(loginScreen);
+document.body.appendChild(welcomeScreen);
+
+// === FUNCIONALIDAD ===
+loginButton.addEventListener('click', () => {
+  // Podrías validar aquí si quisieras, de momento pasa siempre
+  loginScreen.style.display = 'none';
+  document.body.style.background = '#245EDC'; // mismo fondo
+  welcomeScreen.style.display = 'block';
 });
-
-function initPageEffects() {
-  console.log("Página principal cargada y lista");
-}
