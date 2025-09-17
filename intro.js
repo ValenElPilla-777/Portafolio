@@ -3,12 +3,13 @@ const style = document.createElement('style');
 style.textContent = `
   body {
     margin: 0;
-    background: #245EDC;
+    background: #000; /* Fondo negro */
     font-family: "Tahoma", sans-serif;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
   #login-screen {
     background: #f0f0f0;
@@ -54,6 +55,28 @@ style.textContent = `
     color: #fff;
     font-size: 2rem;
     animation: fadeIn 1s ease forwards;
+    margin-top: 100px;
+  }
+  #top-bar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #111;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px;
+    text-align: right;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  #top-bar a {
+    color: #0f9dff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  #top-bar a:hover {
+    text-decoration: underline;
   }
   @keyframes fadeIn {
     from { opacity: 0; }
@@ -67,8 +90,7 @@ const loginScreen = document.createElement('div');
 loginScreen.id = 'login-screen';
 
 const userImg = document.createElement('img');
-// puedes cambiar esta URL por la foto que quieras:
-userImg.src = 'https://i.imgur.com/NH6ktYv.png';
+userImg.src = 'https://i.imgur.com/NH6ktYv.png'; // tu foto de perfil
 userImg.alt = 'Usuario';
 
 const userTitle = document.createElement('h1');
@@ -83,7 +105,7 @@ const loginButton = document.createElement('button');
 loginButton.id = 'login-button';
 loginButton.textContent = 'Iniciar sesión';
 
-// añadimos elementos al login
+// añadir elementos
 loginScreen.appendChild(userImg);
 loginScreen.appendChild(userTitle);
 loginScreen.appendChild(passwordInput);
@@ -97,7 +119,16 @@ const welcomeText = document.createElement('h1');
 welcomeText.textContent = 'Bienvenido a mi portafolio';
 welcomeScreen.appendChild(welcomeText);
 
+// === TOP BAR ===
+const topBar = document.createElement('div');
+topBar.id = 'top-bar';
+const link = document.createElement('a');
+link.href = 'https://tusitio.com'; // cambia esto a tu página real
+link.textContent = 'Ir a la página principal';
+topBar.appendChild(link);
+
 // Añadir al body
+document.body.appendChild(topBar);
 document.body.appendChild(loginScreen);
 document.body.appendChild(welcomeScreen);
 
@@ -105,6 +136,6 @@ document.body.appendChild(welcomeScreen);
 loginButton.addEventListener('click', () => {
   // Podrías validar aquí si quisieras, de momento pasa siempre
   loginScreen.style.display = 'none';
-  document.body.style.background = '#245EDC'; // mismo fondo
   welcomeScreen.style.display = 'block';
+  topBar.style.display = 'block';
 });
